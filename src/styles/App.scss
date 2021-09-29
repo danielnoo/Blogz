@@ -1,8 +1,40 @@
+@import './normalize.scss';
+@import './Publish.scss';
+@import './variables.scss';
+
+
+
+
 header {
   height: 6rem;
   background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+
+  nav ul {
+    display: flex;
+
+    li {
+      padding: 2rem;
+      list-style-type: none;
+
+      .publish-button {
+        background-color: green;
+        border: none;
+        cursor: pointer;
+      }
+
+      .log-button { 
+        border: none;
+        color: white;
+        background-color: teal;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 main {
   display: flex;
 }
+
