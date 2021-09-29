@@ -1,9 +1,9 @@
 import Publish from './Publish';
 import '../styles/App.scss';
-// import firebase from './firebase.js';
+import firebaseApp from '../firebase'
 
 function App() {
-  
+  console.log(firebaseApp)
   
   return (
     <div>
