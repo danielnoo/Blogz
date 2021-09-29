@@ -5,7 +5,7 @@ MVP
 
 2. User can create a blog post
 
-3. User can view article in full view
+3. User can view article in full view (moved to stretch goals)
 
 
 Stretch Goals
