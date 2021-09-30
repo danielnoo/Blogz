@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import {db} from '../dbFunctions';
 import PostCard from './PostCard';
 
+
 const RecentPosts = ({visible}) => {
   
   const [posts, setPosts] = useState([{id: '0', title: 'Loading..........', body: ''}])

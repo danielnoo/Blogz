@@ -1,0 +1,23 @@
+.recentPosts {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+
+  li {
+    height: 18rem;
+    background-color: #fff;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      text-align: center;
+    }
+
+  }
+}
+
+
+
+

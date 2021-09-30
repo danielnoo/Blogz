@@ -1,9 +1,20 @@
 @import './normalize.scss';
 @import './Publish.scss';
 @import './variables.scss';
+@import './RecentPosts.scss';
 
 
 
+.wrapper {
+  width: 100%;
+  background: linear-gradient(0deg, rgba(146,149,148,1) 5%, rgba(255,255,255,1) 48%, rgba(176,176,176,1) 93%);
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
 header {
   height: 6rem;

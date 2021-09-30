@@ -26,15 +26,18 @@ function App() {
 
  
   return (
-    <div>
+    <div className="wrapper">
+      
       <header>
         <h1>Blogz</h1>
         <Nav loggedIn={false} showPublish={showPublish} />
       </header>
-      <main>
-        <Publish visible={displayPublish} showRecent={showRecent}/>
-        <RecentPosts visible={displayRecentPosts}/>
-      </main>
+      <div className="container">  
+        <main>
+          <Publish visible={displayPublish} showRecent={showRecent}/>
+          <RecentPosts visible={displayRecentPosts}/>
+        </main>
+      </div>
     </div>
   );
 }
