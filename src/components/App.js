@@ -3,7 +3,7 @@ import Publish from './Publish';
 import RecentPosts from './RecentPosts';
 import Nav from './Nav';
 import '../styles/App.scss';
-import pushDB from '../dbPush';
+
 
 
 

@@ -1,6 +1,6 @@
 import '../styles/Publish.scss';
 import { useState } from 'react';
-import dbPush from '../dbPush';
+import {dbPush} from '../dbFunctions';
 
 
 const Publish = ({visible, showRecent}) => {
