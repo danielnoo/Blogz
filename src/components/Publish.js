@@ -1,6 +1,6 @@
 import '../styles/Publish.scss';
 import { useState } from 'react';
-import {dbPush} from '../dbFunctions';
+import {db} from '../dbFunctions';
 
 
 const Publish = ({visible, showRecent}) => {
@@ -13,7 +13,7 @@ const Publish = ({visible, showRecent}) => {
   
   // a function that pushes data from state to firebase using the 
   // imported dbpush() function
-  const handleSubmit = async function(event) {
+  const handleSubmit = function(event) {
     event.preventDefault();
     
     const post = {
@@ -22,7 +22,7 @@ const Publish = ({visible, showRecent}) => {
                  };
     
     
-    dbPush(post);
+    db.pushArticle(post);
     showRecent();
   }  
 
