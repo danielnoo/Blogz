@@ -1,13 +1,10 @@
 
 
-const Nav = ({loggedIn, setDisplayPublish, setDisplayRecentPosts}) => {
+const Nav = ({loggedIn, showPublish }) => {
 
   // toggle state in App by passing reference to setState() as props
 
-  const swapStates = () => {
-    setDisplayPublish(true)
-    setDisplayRecentPosts(false)
-  }
+  
 
 
   return(
@@ -17,7 +14,7 @@ const Nav = ({loggedIn, setDisplayPublish, setDisplayRecentPosts}) => {
           loggedIn ? <button className="log-button">Login</button> : 
                      <button className="log-button">Logout</button>
           }</li>
-        <li><button className="publish-button" onClick={() => swapStates()}>Publish</button></li>
+        <li><button className="publish-button" onClick={() => showPublish()}>Publish</button></li>
       </ul>
     </nav>
   )

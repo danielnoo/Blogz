@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-
+import {getDatabase} from "firebase/database"
 
 
 const config = {
@@ -12,6 +12,8 @@ const config = {
     appId: "1:312945649955:web:3bd3a00632778eb8f00496"
 };
 
-const firebaseApp = initializeApp(config);
 
-export default firebaseApp;
+
+const firebaseApp = initializeApp(config);
+const database = getDatabase(firebaseApp);
+

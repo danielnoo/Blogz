@@ -1,22 +1,30 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Publish from './Publish';
 import RecentPosts from './RecentPosts';
 import Nav from './Nav';
 import '../styles/App.scss';
-import firebaseApp from '../firebase';
+import pushDB from '../dbPush';
+
+
+
 
 function App() {
-  console.log(firebaseApp)
+  
   const [displayRecentPosts, setDisplayRecentPosts] = useState(true);
   const [displayPublish, setDisplayPublish] = useState(false);
 
   
-  
+  const showPublish = () => {
+    setDisplayPublish(true);
+    setDisplayRecentPosts(false);
+  }
+
+ 
   return (
     <div>
       <header>
         <h1>Blogz</h1>
-        <Nav loggedIn={false} setDisplayPublish={setDisplayPublish} setDisplayRecentPosts={setDisplayRecentPosts} />
+        <Nav loggedIn={false} showPublish={showPublish} />
       </header>
       <main>
         <Publish visible={displayPublish}/>
