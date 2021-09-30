@@ -20,13 +20,13 @@ Stretch Goals
 
 -Like buttons in the recent posts section
 
--uuid for keys
-
 -estimated read time shown in preview
 
 -API integration - allow users to set an unsplash image at the head of their post
 
 -useEffect to stop listening for DB changes in RecentPosts.js when unmounting
+
+-ability to dynamically add new text areas or pictures in Publish
 
 
 

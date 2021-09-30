@@ -3,31 +3,30 @@ import { useState } from 'react';
 import dbPush from '../dbPush';
 
 
-const Publish = ({visible}) => {
+const Publish = ({visible, showRecent}) => {
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   
-  // pushDB({title: 'it worked'})
   
   
   
-  const handleSubmit = function(event) {
+  // a function that pushes data from state to firebase using the 
+  // imported dbpush() function
+  const handleSubmit = async function(event) {
     event.preventDefault();
     
     const post = {
-      title: title,
-      body: body
-    }
+                  title: title,
+                  body: body
+                 };
     
     
-    dbPush(post)
+    dbPush(post);
+    showRecent();
   }  
 
-  // const handleTitleChange = function () {
-  //   setTitle(this.value)
-  //   console.log(title)
-  // }
+  
 
   return(
     <>
