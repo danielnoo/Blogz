@@ -31,7 +31,7 @@ const RecentPosts = ({visible}) => {
         console.log(post.id)
         return(
           <li key={post.id}>
-            <PostCard title={post.title} body={post.body} />
+            <PostCard dbTag={post.id} title={post.title} body={post.body} />
           </li>
         )
       }) : null
