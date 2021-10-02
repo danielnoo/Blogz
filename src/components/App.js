@@ -8,6 +8,7 @@ import '../styles/App.scss';
 
 
 
+
 function App() {
   
   const [displayRecentPosts, setDisplayRecentPosts] = useState(true);
@@ -27,9 +28,8 @@ function App() {
  
   return (
     <div className="wrapper">
-      
       <header>
-        <h1>Blogz</h1>
+        <a href="index.html"><h1>Blogz</h1></a>
         <Nav loggedIn={false} showPublish={showPublish} />
       </header>
       <div className="container">  
@@ -41,5 +41,7 @@ function App() {
     </div>
   );
 }
+      
+        
 
 export default App;

@@ -1,47 +1,62 @@
 import {useState, useEffect} from 'react';
-import {db} from '../dbFunctions';
+import firebaseApp from '../firebase'
+import {ref, onValue} from 'firebase/database';
 import PostCard from './PostCard';
+
 
 
 const RecentPosts = ({visible}) => {
   
-  const [posts, setPosts] = useState([{id: '0', title: 'Loading..........', body: ''}])
+  const [posts, setPosts] = useState([])
   
-  
-  
-  const sendStateFn = (array) => {
-    setPosts(array)
-  }
   
   useEffect(() => {
-      db.getMethodDB(sendStateFn)
-  }, [])
-  
-  
-  
-
-  
- 
-  return(
-    <ul className="recentPosts">
       
-      {/* take the first ten posts and map over them, returning to jsx */}
-      {
-        visible ? posts.slice(0, 10).map(post => {
-        console.log(post.id)
-        return(
-          <li key={post.id}>
-            <PostCard dbTag={post.id} title={post.title} body={post.body} />
-          </li>
-        )
-      }) : null
-        
-      }   
-    </ul>
+    const postListRef = ref(firebaseApp, '/posts');
+    const dataArray = [];
+    onValue(postListRef, (snapshot) => {
+      const data = snapshot.val();
+      for(let key in data) {
+        dataArray.push({
+          id: key,
+          title: data[key].title,
+          body: data[key].body
+        })
+      }
+      setPosts(dataArray.reverse());
+    });
+    
+  }, [])
+    
+  
+  
+  
+ // visible state is passed from App.js, if it is true, render a ul and 
+ // map the first ten items of the posts array into li elements
+  return(
+    <>
+      { visible ? <h2 className="recentHeader">Recent Posts</h2> : null }
+
+      { visible ? 
+      
+        <ul className="recentPosts">
+          {posts.slice(0, 10).map(post => {
+            return(
+              <li key={post.id}>
+                <PostCard dbTag={post.id} title={post.title} body={post.body} />
+              </li>
+            )
+          })} 
+        </ul> : null
+      } 
+    </>
   )
 }
 
 export default RecentPosts
+  
+
+    
     
     
 

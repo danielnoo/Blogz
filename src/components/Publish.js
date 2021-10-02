@@ -24,6 +24,8 @@ const Publish = ({visible, showRecent}) => {
     
     db.pushArticle(post);
     showRecent();
+    setTitle("");
+    setBody("");
   }  
 
   
@@ -35,9 +37,9 @@ const Publish = ({visible, showRecent}) => {
           <section>
             <form onSubmit={handleSubmit}>
               <label htmlFor="title">Enter a title</label>
-              <input value={title} id="title" name="title" type="text" onInput={(e) => setTitle(e.target.value)} />
+              <input value={title} id="title" name="title" type="text" onChange={(e) => setTitle(e.target.value)} />
               <label htmlFor="body">Start Bloggin'</label>
-              <textarea value={body} name="body" id="body" onInput={(e) => setBody(e.target.value)} />
+              <textarea value={body} name="body" id="body" onChange={(e) => setBody(e.target.value)} />
               <button>Publish</button>
             </form>
           </section> : null

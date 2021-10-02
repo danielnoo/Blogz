@@ -1,4 +1,4 @@
-import {db} from '../dbFunctions';
+
 
 
 
@@ -7,12 +7,12 @@ import {db} from '../dbFunctions';
 
 const PostCard = ({dbTag, title, body}) => {
 
-  const handleClick = () => {
+  // const handleClick = () => {
 
-  }
-
+  // }
   
-  const time = Math.round(body.length / 220);
+  
+  const time = Math.round((body.length) / 220);
   
 
   return(

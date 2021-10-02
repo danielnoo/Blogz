@@ -1,5 +1,5 @@
 import { getDatabase, ref, set, push, onValue, get, child } from "firebase/database";
-import './firebase'
+import firebaseApp from './firebase'
 
 
 export const db = {}
@@ -7,15 +7,15 @@ export const db = {}
 
 
 db.pushArticle = (dataObject) => {
-    const db = getDatabase();
-    const postListRef = ref(db, '/posts');
+    const postListRef = ref(firebaseApp, '/posts');
     const newPostRef = push(postListRef);
     set(newPostRef, dataObject);
 }
+    
 
-db.getArticles = () => {
-    const datab = getDatabase();
-    const postListRef = ref(datab, '/posts');
+db.getArticles = (setState) => {
+   
+    const postListRef = ref(firebaseApp, '/posts');
     const dataArray = [];
     onValue(postListRef, (snapshot) => {
         const data = snapshot.val();
@@ -28,30 +28,31 @@ db.getArticles = () => {
         }
     });
     
-    return dataArray;
+    const articles = dataArray.reverse();
+    setState(articles);
 }
 
-db.getMethodDB = (sendStateFn) => {
-    const dbRef = ref(getDatabase());
-    const dataArray = [];
-    get(child(dbRef, '/posts')).then((snapshot) => {
-        if (snapshot.exists()) {
-            const data = snapshot.val();
-            for(let key in data) {
-            dataArray.push({
-                id: key,
-                title: data[key].title,
-                body: data[key].body
-            })
-            }
-            sendStateFn(dataArray.reverse())
-        } else {
-            console.log('no data')
-        }
-    }).catch((error) => {
-        console.error(error)
-    });
-}
+// db.getMethodDB = (sendStateFn) => {
+//     const dbRef = ref(getDatabase());
+//     const dataArray = [];
+//     get(child(dbRef, '/posts')).then((snapshot) => {
+//         if (snapshot.exists()) {
+//             const data = snapshot.val();
+//             for(let key in data) {
+//             dataArray.push({
+//                 id: key,
+//                 title: data[key].title,
+//                 body: data[key].body
+//             })
+//             }
+//             sendStateFn(dataArray.reverse())
+//         } else {
+//             console.log('no data')
+//         }
+//     }).catch((error) => {
+//         console.error(error)
+//     });
+// }
                
             
                 
