@@ -24,6 +24,15 @@ function App() {
     setDisplayPublish(false);
     setDisplayRecentPosts(true);
   }
+  // display article in full view when read more button is clicked
+  // state has to drill down from here to PostCard and bring with it a function that takes args
+  // that function will call in PostCard and send the article info here, where it will be passed as 
+  // props to full article view
+  
+  // state change here will hide recent posts, 
+  const showFullArticle = () => {
+
+  }
 
  
   return (
