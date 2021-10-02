@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import Publish from './Publish';
 import RecentPosts from './RecentPosts';
 import Nav from './Nav';
+import FullArticleView from './FullArticleView';
 import '../styles/App.scss';
 
 
@@ -13,6 +14,8 @@ function App() {
   
   const [displayRecentPosts, setDisplayRecentPosts] = useState(true);
   const [displayPublish, setDisplayPublish] = useState(false);
+  const [displayFullArticle, setDisplayFullArticle] = useState(false);
+  const [articleData, setArticleData] = useState([]);
 
   // hide recent posts landing page and show the publish page
   const showPublish = () => {
@@ -29,10 +32,15 @@ function App() {
   // that function will call in PostCard and send the article info here, where it will be passed as 
   // props to full article view
   
-  // state change here will hide recent posts, 
+  // state change here will hide Recentposts and Publish,then show FullArticleView
   const showFullArticle = () => {
-
+    setDisplayPublish(false);
+    setDisplayRecentPosts(false);
+    setDisplayFullArticle(true);
   }
+
+
+
 
  
   return (
@@ -44,7 +52,8 @@ function App() {
       <div className="container">  
         <main>
           <Publish visible={displayPublish} showRecent={showRecent}/>
-          <RecentPosts visible={displayRecentPosts}/>
+          <RecentPosts visible={displayRecentPosts} setArticleData={setArticleData}/>
+          <FullArticleView visible={displayFullArticle} data={articleData} />
         </main>
       </div>
     </div>
