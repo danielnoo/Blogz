@@ -8,7 +8,7 @@ const FullArticleView = ({visible, data}) => {
     <>
       { visible ? 
         
-        <div>
+        <div className="fullArticleContainer">
           <h4>{data.title}</h4>
           <p>{data.body}</p>
         </div>

@@ -1,4 +1,4 @@
-import '../styles/Publish.scss';
+
 import { useState } from 'react';
 import {db} from '../dbFunctions';
 

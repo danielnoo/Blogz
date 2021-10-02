@@ -28,10 +28,13 @@ form {
 
   button {
     border: none;
-    background-color: #fff;
-    height: 2rem;
+    background-color: $primaryAccent;
+    color: white;
+    height: 2.5rem;
     width: 50%;
     margin-top: 1.5rem;
-    
+    font-family: $buttonFont;
+    margin: 2rem;
+
   }
 }
