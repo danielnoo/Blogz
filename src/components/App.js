@@ -21,11 +21,13 @@ function App() {
   const showPublish = () => {
     setDisplayPublish(true);
     setDisplayRecentPosts(false);
+    setDisplayFullArticle(false);
   }
   // hide Publish page and show RecentPosts
   const showRecent = () => {
     setDisplayPublish(false);
     setDisplayRecentPosts(true);
+    setDisplayFullArticle(false);
   }
   // display article in full view when read more button is clicked
   // state has to drill down from here to PostCard and bring with it a function that takes args
@@ -52,7 +54,7 @@ function App() {
       <div className="container">  
         <main>
           <Publish visible={displayPublish} showRecent={showRecent}/>
-          <RecentPosts visible={displayRecentPosts} setArticleData={setArticleData}/>
+          <RecentPosts visible={displayRecentPosts} setArticleData={setArticleData} showFull={showFullArticle}/>
           <FullArticleView visible={displayFullArticle} data={articleData} />
         </main>
       </div>

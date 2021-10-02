@@ -5,22 +5,25 @@
 
 
 
-const PostCard = ({dbTag, title, body}) => {
+const PostCard = ({post, setArticleData, showFull}) => {
 
-  // const handleClick = () => {
+   const handleClick = () => {
+    
+    setArticleData(post)
+    showFull();
 
-  // }
+   }
   
   
-  const time = Math.round((body.length) / 220);
+  const time = Math.round((post.body.length) / 220);
   
 
   return(
     <>
-      <h3>{title}</h3>
-      <p>{body}</p>
+      <h3>{post.title}</h3>
+      <p>{post.body}</p>
       <div className="fade"></div>
-      <button>Read more --- {time} min. read</button>
+      <button onClick={handleClick}>Read more --- {time} min. read</button>
     </>
   )
 

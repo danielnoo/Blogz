@@ -5,7 +5,7 @@ import PostCard from './PostCard';
 
 
 
-const RecentPosts = ({visible}) => {
+const RecentPosts = ({visible, setArticleData, showFull}) => {
   
   const [posts, setPosts] = useState([])
   
@@ -43,7 +43,7 @@ const RecentPosts = ({visible}) => {
           {posts.slice(0, 10).map(post => {
             return(
               <li key={post.id}>
-                <PostCard dbTag={post.id} title={post.title} body={post.body} />
+                <PostCard post={post} setArticleData={setArticleData} showFull={showFull} />
               </li>
             )
           })} 
