@@ -8,8 +8,10 @@ const Publish = ({visible, showRecent}) => {
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  
-  
+
+  const [inputArray, setInputArray] = useState([])
+
+
   
   
   // a function that pushes data from state to firebase using the 
