@@ -88,13 +88,24 @@ header {
 
         .log-button { 
           background-color: $secondaryAccent;
-          color: #F0EBCC;
+          color: $secondaryBg;
           border: none;
           cursor: pointer;
           font-family: $buttonFont;
           font-size: 2rem;
           padding: 0.3rem 1rem 0.3rem 1rem;
           transition: 0.5s;
+
+          &:hover {
+            background-color: $secondaryBg;
+            color: $primaryAccent;
+            border: 1px solid $secondaryAccent;
+          }
+          &:focus {
+            background-color: $secondaryBg;
+            color: $primaryAccent;
+            border: 1px solid $secondaryAccent;
+          }
         }
       }
     }
