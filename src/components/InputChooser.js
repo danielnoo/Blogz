@@ -1,28 +1,33 @@
 import {useState} from 'react';
 
-const InputChooser = () => {
+const InputChooser = ({addInputType}) => {
   const [menuVisibility, setMenuVisibility] = useState(false);
   const [plusClicked, setPlusClicked] = useState(true);
   
-  
-  const showElements = () => {
+  // a button within the form that allows the user to choose between
+  // different types of inputs to add to their form
+  const showElements = (e) => {
+    e.preventDefault();
     setMenuVisibility(!menuVisibility);
     setPlusClicked(!plusClicked);
   }
+
+
 
   return(
   
     <div className="addElementContainer">
       { plusClicked ? 
-        <button onClick={showElements}>+</button>
-        : <button onClick={showElements}>-</button>
+        <button type="button" onClick={showElements}>+</button>
+        : <button type="button" onClick={showElements}>-</button>
       }
     
       { menuVisibility ?
       <nav>
-        <button>Add subtitle</button>
-        <button>Add image by URL</button>
-        <button>Add body text</button>
+        <button type="button" onClick={() => addInputType('title')}>Add Title</button>
+        <button type="button" onClick={() => addInputType('subTitle')}>Add subtitle</button>
+        <button type="button" onClick={() => addInputType('image')}>Add image by URL</button>
+        <button type="button" onClick={() => addInputType('body')}>Add body text</button>
       </nav>
         : null
       }
