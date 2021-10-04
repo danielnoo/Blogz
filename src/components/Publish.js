@@ -7,23 +7,11 @@ import DynamicInput from './DynamicInput';
 
 const Publish = ({visible, showRecent}) => {
   const [inputArray, setInputArray] = useState([]); // each entry is a type of input
-  const [input0, setInput0] = useState("");
-  const [input1, setInputOne] = useState("");
-  const [input2, setInputTwo] = useState("");
-  const [input3, setInputThree] = useState("");
-  const [input4, setInputFour] = useState("");
-  const [input5, setInputFive] = useState("");
-  const [input6, setInputSix] = useState("");
-  const [input7, setInputSeven] = useState("");
-  const [input8, setInputEight] = useState("");
-  const [input9, setInputNine] = useState("");
-  const [input10, setInputTen] = useState("");
-
   
 
+  
   /// a function that is sent to InputChooser that allows user to
   // add inputs to their form as they write
-  
   
   const addInputType = (inputType) => {
     if(inputArray.length < 10) {
@@ -31,12 +19,16 @@ const Publish = ({visible, showRecent}) => {
       console.log(`added ${inputType} to array`)
     }
   }
-
-
-  
   
 
-  
+
+  // a function that creates an array with state taken from DynamicInput.js
+
+  const sendStateToParent = () => {
+
+  }
+
+
   
   // a function that pushes data from state to firebase using the 
   // imported dbpush() function
@@ -80,7 +72,7 @@ const Publish = ({visible, showRecent}) => {
                 inputArray.map((input, index) => {
                   
                   return(
-                    <DynamicInput inputOrder={'input' + index} inputType={input} />
+                    <DynamicInput inputOrder={'input' + index} inputType={input} sendState={sendStateToParent} />
                   )    
                   
                 })
