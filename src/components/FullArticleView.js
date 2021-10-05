@@ -1,22 +1,36 @@
-import React from 'react';
+import TitleText from './TitleText';
+import BodyText from './BodyText';
+import ImageComponent from './ImageComponent';
+import SubTitleInput from './SubTitleInput';
+
+
 
 const FullArticleView = ({visible, data}) => {
 
   // get article data from App.js, which gets it from RecentPosts->PostCard
   // for now just get article on page and deal with dynamic situations later
+
+
   return(
-    <React.Fragment>
+    <>
       { visible ? 
         
         <div className="fullArticleContainer">
-          <h4>{data.title}</h4>
-          <p>{data.body}</p>
+          {data.map(component => {
+            return(() => {
+              switch(component[0]) {
+                case 'title':
+                  return <
+              }
+            })()
+
+          })}
         </div>
 
         : null
         
       }
-    </React.Fragment>
+    </>
   )
 }
 

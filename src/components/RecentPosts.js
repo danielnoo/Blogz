@@ -17,15 +17,29 @@ const RecentPosts = ({visible, setArticleData, showFull}) => {
     const dataArray = [];
     onValue(postListRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(snapshot.val())
+      
       for(let key in data) {
         dataArray.push({
           id: key,
-          title: data[key].title,
-          body: data[key].body
+          post: data[key]
         })
       }
-      setPosts(dataArray.reverse());
+      
+      // flatten out the data gathered by the for..in by using
+      // access to the index property of .map()
+      // console.log(dataArray);
+      // const postSectionCount = Object.keys(dataArray[0].post).length
+      // console.log(postSectionCount)
+      // const evenOutData = dataArray.map((post, index) => {
+      //   return {
+      //     id: post.id,
+      //     type: post.post['index' + index].inputType,
+      //     content: post.post['index' + index].inputValue
+      //   }
+      // }).reverse()
+      dataArray.reverse();
+      setPosts([...dataArray]);
+      
     });
     
   }, [])
