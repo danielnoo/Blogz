@@ -17,6 +17,7 @@ const RecentPosts = ({visible, setArticleData, showFull}) => {
     const dataArray = [];
     onValue(postListRef, (snapshot) => {
       const data = snapshot.val();
+      console.log(snapshot.val())
       for(let key in data) {
         dataArray.push({
           id: key,

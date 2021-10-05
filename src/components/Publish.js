@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-// import {db} from '../dbFunctions';
+import {db} from '../dbFunctions';
 import InputChooser from './InputChooser';
 import TitleInput from './TitleInput';
 import SubTitleInput from './SubTitleInput';
@@ -29,41 +29,39 @@ const Publish = ({visible, showRecent}) => {
   
 
 
-  // a function that creates an array with state taken from DynamicInput.js
+  // a function that creates an array with state that has been raised from input children components
   // - it gets the data from inputs that were created dynamically
 
   const sendStateToParent = (inputOrder, inputType, inputValue) => {
     const placeHoldArray = articleBuild;
     placeHoldArray[inputOrder] = {inputType, inputValue};
     setArticleBuild([...placeHoldArray]);
-    console.log(articleBuild)
+    
   }
 
 
-  //a function that gathers input data
-  // then pushes data from state to firebase using the 
+  // a function that gathers input data from articleBuild state
+  // it should create a single object with all of the article pieces stored in order of creation
+  // it then pushes data from state to firebase using the 
   // imported dbpush() function
   const handleSubmit = function(event) {
     
     event.preventDefault();
     
-    console.log(event)
-
-  }
-
-    // on submit go into every input and get their states?
-  //   const post = {
-  //                 title: title,
-  //                 body: body
-  //                };
     
+    const post = {};
+    // filter out empty inputs in state, for each input add them to the post object and name them by index
+    articleBuild.filter(input => input.inputValue).forEach((input, index) => post['index' + index] = input)
+   
+   
+    console.log(post)
     
-  //   db.pushArticle(post);
-  //   showRecent();
+    db.pushArticle(post);
+    showRecent();
   //   setTitle("");
   //   setBody("");
   // }  
-
+  }
   
 
   
@@ -87,27 +85,65 @@ const Publish = ({visible, showRecent}) => {
                 
                 inputArray.map((input, index) => {
                   
-                  if(input === 'title') {
-                    return (<li key={index}>
-                    <TitleInput inputOrder={index} 
-                    inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} /></li>
-                    )
-                  } else if(input === 'subTitle') {
-                    return (<li key={index}>
-                    <SubTitleInput inputOrder={index} 
-                    inputType={'subTitle'} handleInput={sendStateToParent} /></li>
-                    )
-                  } else if(input === 'image') {
-                    return (<li key={index}>
-                    <ImageInput inputOrder={index} 
-                    inputType={'image'} handleInput={sendStateToParent} /></li>
-                    )
-                  } else {
-                    return(<li key={index}>
-                    <BodyInput inputOrder={index} 
-                    inputType={'body'} handleInput={sendStateToParent} /></li>
-                    )
-                  }
+                  
+                  return( () => {
+                    switch(input) {
+                      case 'title':
+                        return <li key={index}>
+                          <TitleInput inputOrder={index} 
+                          inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} /></li>;
+                     
+                      case 'subTitle':
+                        return <li key={index}>
+                          <SubTitleInput inputOrder={index} 
+                          inputType={'subTitle'} handleInput={sendStateToParent} parentState={articleBuild} /></li>;
+                     
+                      case 'image':
+                        return <li key={index}>
+                          <ImageInput inputOrder={index} 
+                          inputType={'image'} handleInput={sendStateToParent} parentState={articleBuild} /></li>;
+                     
+                      case 'body':
+                        return <li key={index}>
+                        <BodyInput inputOrder={index} 
+                        inputType={'body'} handleInput={sendStateToParent} parentState={articleBuild} /></li>;
+                     
+                      default: 
+                        return null
+                    }
+
+                  })()
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  // if(input === 'title') {
+                  //   return (<li key={index}>
+                  //   <TitleInput inputOrder={index} 
+                  //   inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} /></li>
+                  //   )
+                  // } else if(input === 'subTitle') {
+                  //   return (<li key={index}>
+                  //   <SubTitleInput inputOrder={index} 
+                  //   inputType={'subTitle'} handleInput={sendStateToParent} /></li>
+                  //   )
+                  // } else if(input === 'image') {
+                  //   return (<li key={index}>
+                  //   <ImageInput inputOrder={index} 
+                  //   inputType={'image'} handleInput={sendStateToParent} /></li>
+                  //   )
+                  // } else {
+                  //   return(<li key={index}>
+                  //   <BodyInput inputOrder={index} 
+                  //   inputType={'body'} handleInput={sendStateToParent} /></li>
+                  //   )
+                  // }
                   
                 })
               }

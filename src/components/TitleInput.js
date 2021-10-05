@@ -3,7 +3,7 @@
 
 const TitleInput = ({inputOrder, inputType, handleInput, parentState}) => {
   
-  
+  console.log(parentState)
   return (
     <> 
       <label className="sr-only" htmlFor="title">Enter a title</label>
