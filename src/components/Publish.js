@@ -1,13 +1,19 @@
 
 import { useState } from 'react';
-import {db} from '../dbFunctions';
+import React from 'react';
+// import {db} from '../dbFunctions';
 import InputChooser from './InputChooser';
-import DynamicInput from './DynamicInput';
+import TitleInput from './TitleInput';
+import SubTitleInput from './SubTitleInput';
+import BodyInput from './BodyInput';
+import ImageInput from './ImageInput';
 
 
 const Publish = ({visible, showRecent}) => {
+  // this state array is used to generate the inputs dynamically
   const [inputArray, setInputArray] = useState([]); // each entry is a type of input
-  
+  // this state is used to store input data from child inputs in order in order
+  const [articleBuild, setArticleBuild] = useState([{inputType: '', inputValue: ''},{inputType: '', inputValue: ''},{inputType: '', inputValue: ''},{inputType: '', inputValue: ''},{inputType: '', inputValue: ''}, {inputType: '', inputValue: ''},{inputType: '', inputValue: ''},{inputType: '', inputValue: ''},{inputType: '', inputValue: ''},{inputType: '', inputValue: ''}])
 
   
   /// a function that is sent to InputChooser that allows user to
@@ -15,7 +21,9 @@ const Publish = ({visible, showRecent}) => {
   
   const addInputType = (inputType) => {
     if(inputArray.length < 10) {
-      setInputArray(...inputArray, inputType);
+      const placeHoldArray = inputArray;
+      placeHoldArray.push(inputType)
+      setInputArray([...placeHoldArray]);
       console.log(`added ${inputType} to array`)
     }
   }
@@ -23,19 +31,26 @@ const Publish = ({visible, showRecent}) => {
 
 
   // a function that creates an array with state taken from DynamicInput.js
+  // - it gets the data from inputs that were created dynamically
 
-  const sendStateToParent = () => {
-
+  const sendStateToParent = (inputOrder, inputType, inputValue) => {
+    const placeHoldArray = articleBuild;
+    placeHoldArray[0] = {inputType, inputValue};
+    setArticleBuild([...placeHoldArray]);
+    console.log(articleBuild)
   }
 
 
-  
-  // a function that pushes data from state to firebase using the 
+  //a function that gathers input data
+  // then pushes data from state to firebase using the 
   // imported dbpush() function
   const handleSubmit = function(event) {
+    
     event.preventDefault();
-    console.log(`submitted ${event.target.value}`);
+    
+    console.log(event)
 
+  }
 
     // on submit go into every input and get their states?
   //   const post = {
@@ -50,7 +65,7 @@ const Publish = ({visible, showRecent}) => {
   //   setBody("");
   // }  
 
-  }
+  
 
   
 
@@ -63,20 +78,42 @@ const Publish = ({visible, showRecent}) => {
           <section>
             
             <form onSubmit={handleSubmit}>
-              {/* <label className="sr-only" htmlFor="title">Enter a title</label>
-              <input placeholder="Enter a title" value={title} id="title" name="title" type="text" onChange={(e) => setTitle(e.target.value)} /> */}
+             
               <InputChooser addInputType={addInputType}/>
-              {/* <label className="sr-only" htmlFor="body">Start Bloggin'</label>
-              <textarea placeholder="Start writing" value={body} name="body" id="body" onChange={(e) => setBody(e.target.value)} /> */}
+              
+               
+                
+                
               {
+                
                 inputArray.map((input, index) => {
                   
-                  return(
-                    <DynamicInput inputOrder={'input' + index} inputType={input} sendState={sendStateToParent} />
-                  )    
+                  if(input === 'title') {
+                    return (
+                    <TitleInput key={index} inputOrder={index} 
+                    inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} />
+                    )
+                  } else if(input === 'subTitle') {
+                    return (
+                    <SubTitleInput inputOrder={index} 
+                    inputType={'subTitle'} sendState={sendStateToParent} />
+                    )
+                  } else if(input === 'image') {
+                    return (
+                    <ImageInput inputOrder={index} 
+                    inputType={'image'} sendState={sendStateToParent} />
+                    )
+                  } else {
+                    return(
+                    <BodyInput inputOrder={index} 
+                    inputType={'body'} sendState={sendStateToParent} />
+                    )
+                  }
                   
                 })
               }
+              
+              
               
               <button>Publish move this to useEffect and render if form length is long enough</button> 
             </form>
