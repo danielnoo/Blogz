@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import React from 'react';
 // import {db} from '../dbFunctions';
 import InputChooser from './InputChooser';
 import TitleInput from './TitleInput';
@@ -35,7 +34,7 @@ const Publish = ({visible, showRecent}) => {
 
   const sendStateToParent = (inputOrder, inputType, inputValue) => {
     const placeHoldArray = articleBuild;
-    placeHoldArray[0] = {inputType, inputValue};
+    placeHoldArray[inputOrder] = {inputType, inputValue};
     setArticleBuild([...placeHoldArray]);
     console.log(articleBuild)
   }
@@ -83,36 +82,36 @@ const Publish = ({visible, showRecent}) => {
               
                
                 
-                
+              <ul>  
               {
                 
                 inputArray.map((input, index) => {
                   
                   if(input === 'title') {
-                    return (
-                    <TitleInput key={index} inputOrder={index} 
-                    inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} />
+                    return (<li key={index}>
+                    <TitleInput inputOrder={index} 
+                    inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} /></li>
                     )
                   } else if(input === 'subTitle') {
-                    return (
+                    return (<li key={index}>
                     <SubTitleInput inputOrder={index} 
-                    inputType={'subTitle'} sendState={sendStateToParent} />
+                    inputType={'subTitle'} handleInput={sendStateToParent} /></li>
                     )
                   } else if(input === 'image') {
-                    return (
+                    return (<li key={index}>
                     <ImageInput inputOrder={index} 
-                    inputType={'image'} sendState={sendStateToParent} />
+                    inputType={'image'} handleInput={sendStateToParent} /></li>
                     )
                   } else {
-                    return(
+                    return(<li key={index}>
                     <BodyInput inputOrder={index} 
-                    inputType={'body'} sendState={sendStateToParent} />
+                    inputType={'body'} handleInput={sendStateToParent} /></li>
                     )
                   }
                   
                 })
               }
-              
+              </ul>  
               
               
               <button>Publish move this to useEffect and render if form length is long enough</button> 
