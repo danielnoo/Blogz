@@ -43,12 +43,28 @@ header {
 
   
   
- 
+  .userPicContainer {
+    width: 5rem;
+    grid-row-start: 1;
+    grid-column: 2/3;
+    border-radius: 50%;
+    align-self: center;
+    justify-self: center;
+    margin-right: 17rem;
+
+    img {
+      max-width: 100%;
+      border-radius: 50%;
+    }
+  }
+
    
+    
 
   
 
   nav {
+    grid-row-start: 1;
     grid-column: 2/3;
     justify-self: center;
     display: flex;

@@ -1,6 +1,6 @@
-import React from 'react';
+import LoginButton from "./LoginButton"
 
-const Nav = ({loggedIn, showPublish }) => {
+const Nav = ({user, setUser, showPublish }) => {
 
 
   /// have login state here and apply it all in a new nav component
@@ -14,10 +14,9 @@ const Nav = ({loggedIn, showPublish }) => {
   return(
     <nav>
       <ul>
-        <li>{
-          loggedIn ? <button className="log-button">Login</button> : 
-                     <button className="log-button">Logout</button>
-          }</li>
+        <li>
+          <LoginButton user={user} setUser={setUser} />
+        </li>
         <li><button className="publish-button" onClick={() => showPublish()}>Publish</button></li>
       </ul>
     </nav>
@@ -25,3 +24,4 @@ const Nav = ({loggedIn, showPublish }) => {
 }
 
 export default Nav
+            

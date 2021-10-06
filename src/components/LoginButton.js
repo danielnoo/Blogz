@@ -1,44 +1,77 @@
 
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
-const provider = new GoogleAuthProvider();
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
 
 
 
 
-const auth = getAuth();
-signInWithPopup(auth, provider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    console.log(user)
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
+const LoginButton = ({user, setUser}) => {
+
+  const provider = new GoogleAuthProvider();
+  const loginFunction = () => {
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        
+        // The signed-in user info.
+        const user = result.user;
+        
+        const userObject = {
+          userName: user.displayName,
+          userPic: user.photoURL,
+          userLoggedIn: true
+        }
+        // set minimal user info in state
+        setUser(userObject)
+        
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(`${errorMessage} ${errorCode}`)
+        alert(`${errorMessage} ${errorCode}`)
+      });
+  }
 
 
-const LoginButton = () => {
+  const logoutFunction = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      const userObject = {
+      userName: "",
+      userPic: "",
+      userLoggedIn: false
+      };
 
-  // some state that can maybe be passed through
-  
-  
+      setUser(userObject)
+    
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(`${errorMessage} ${errorCode}`);
+      alert(`${errorMessage} ${errorCode}`);
+    });
+  }
   
   
   return(
+     user.userLoggedIn ?
+      
+      <button onClick={logoutFunction} className="log-button">Logout</button> : 
+      <button onClick={loginFunction} className="log-button">Login</button>
 
   )
 
 
 }
+
+export default LoginButton;
+  
+  
+
+
+
+
+
+   

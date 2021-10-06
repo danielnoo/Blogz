@@ -3,6 +3,7 @@ import Publish from './Publish';
 import RecentPosts from './RecentPosts';
 import Nav from './Nav';
 import FullArticleView from './FullArticleView';
+import UserPic from './UserPic';
 import '../styles/App.scss';
 
 
@@ -12,12 +13,15 @@ function App() {
   const [displayPublish, setDisplayPublish] = useState(false);
   const [displayFullArticle, setDisplayFullArticle] = useState(false);
   const [articleData, setArticleData] = useState([]);
+  const [user, setUser] = useState({userName: "", userPic: "", userLoggedIn: false})
 
   // hide recent posts landing page and show the publish page
   const showPublish = () => {
+    if(user.userLoggedIn) {
     setDisplayPublish(true);
     setDisplayRecentPosts(false);
     setDisplayFullArticle(false);
+    }
   }
   // hide Publish page and show RecentPosts
   const showRecent = () => {
@@ -40,12 +44,15 @@ function App() {
 
 
 
- 
+  // a lot of state is passed down from App.js through this return function
+  // some of it is data that has been raised from components like articleData and user
+  // some of it is visual toggles like show* and display*
   return (
     <div className="wrapper">
       <header>
         <a href="index.html"><h1>Blogz</h1></a>
-        <Nav loggedIn={false} showPublish={showPublish} />
+        <UserPic user={user} />
+        <Nav user={user} setUser={setUser} showPublish={showPublish} />
       </header>
       <div className="container">  
         <main>
