@@ -1,7 +1,7 @@
-import TitleText from './TitleText';
-import BodyText from './BodyText';
-import ImageComponent from './ImageComponent';
-import SubTitleText from './SubTitleText';
+import TitleText from './TitleText.js';
+import BodyText from './BodyText.js';
+import ImageComponent from './ImageComponent.js';
+import SubTitleText from './SubTitleText.js';
 
 
 
