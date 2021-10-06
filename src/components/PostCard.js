@@ -63,8 +63,7 @@ const PostCard = ({post, setArticleData, showFull}) => {
   
   // call after flattenedPost update
   useEffect(() => {
-    console.log('once?')
-    console.log(flattenedPost)
+    
     let title;
     let body;
 
@@ -85,13 +84,7 @@ const PostCard = ({post, setArticleData, showFull}) => {
   },[flattenedPost])
 
 
-
-
-  
-  
-    // Math.round((post.body.length) / 220);
     
-    //
   
   return(
       <>
