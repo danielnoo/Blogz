@@ -9,6 +9,7 @@ import React from 'react';
 const RecentPosts = ({visible, setArticleData, showFull}) => {
   
   const [posts, setPosts] = useState([])
+  const [dataReceived, setDataReceived] = useState(false)
   
   
   useEffect(() => {
@@ -39,12 +40,13 @@ const RecentPosts = ({visible, setArticleData, showFull}) => {
       // }).reverse()
       dataArray.reverse();
       setPosts([...dataArray]);
+      setDataReceived(true);
       
     });
     
   }, [])
     
-  
+  useEffect(() => {})
   
   
  // visible state is passed from App.js, if it is true, render a ul and 
@@ -53,7 +55,7 @@ const RecentPosts = ({visible, setArticleData, showFull}) => {
     <>
       { visible ? <h2 className="recentHeader">Recent Posts</h2> : null }
 
-      { visible ? 
+      { visible && dataReceived ? 
       
         <ul className="recentPosts">
           {posts.slice(0, 10).map(post => {
