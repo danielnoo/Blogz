@@ -26,18 +26,7 @@ const RecentPosts = ({visible, setArticleData, showFull}) => {
         })
       }
       
-      // flatten out the data gathered by the for..in by using
-      // access to the index property of .map()
-      // console.log(dataArray);
-      // const postSectionCount = Object.keys(dataArray[0].post).length
-      // console.log(postSectionCount)
-      // const evenOutData = dataArray.map((post, index) => {
-      //   return {
-      //     id: post.id,
-      //     type: post.post['index' + index].inputType,
-      //     content: post.post['index' + index].inputValue
-      //   }
-      // }).reverse()
+      
       dataArray.reverse();
       setPosts([...dataArray]);
       setDataReceived(true);
