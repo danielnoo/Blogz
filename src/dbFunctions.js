@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, push, onValue, get, child } from "firebase/database";
+import {ref, set, push, onValue} from "firebase/database";
 import firebaseApp from './firebase'
 
 
