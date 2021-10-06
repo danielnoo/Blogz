@@ -21,4 +21,12 @@
     letter-spacing: 1.3px;
     border-top: 4px solid $secondaryBg;
   }
+
+  .imageContainer {
+    width: 100%;
+
+    img {
+      max-width: 100%;
+    }
+  }
 }

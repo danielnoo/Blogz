@@ -6,10 +6,6 @@ import FullArticleView from './FullArticleView';
 import '../styles/App.scss';
 
 
-
-
-
-
 function App() {
   
   const [displayRecentPosts, setDisplayRecentPosts] = useState(true);

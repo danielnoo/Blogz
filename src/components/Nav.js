@@ -2,6 +2,10 @@ import React from 'react';
 
 const Nav = ({loggedIn, showPublish }) => {
 
+
+  /// have login state here and apply it all in a new nav component
+
+
   // toggle state in App by passing reference to setState() as props
 
   

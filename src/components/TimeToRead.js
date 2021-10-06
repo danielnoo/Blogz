@@ -1,7 +1,7 @@
 
 
 const TimeToRead = ({post}) => {
-  console.log(post)
+  
   let letters = 0;
 
   post.forEach(textPiece => {
