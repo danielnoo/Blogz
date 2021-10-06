@@ -1,7 +1,7 @@
 import TitleText from './TitleText';
 import BodyText from './BodyText';
 import ImageComponent from './ImageComponent';
-import SubTitleInput from './SubTitleInput';
+import SubTitleText from './SubTitleText';
 
 
 
@@ -20,7 +20,15 @@ const FullArticleView = ({visible, data}) => {
             return(() => {
               switch(component[0]) {
                 case 'title':
-                  return <
+                  return <TitleText keyPass={component.id} text={component[1]} />;
+                case 'subTitle':
+                  return <SubTitleText keyPass={component.id} text={component[1]} />;
+                case 'image':
+                  return <ImageComponent keyPass={component.id} text={component[1]} />;
+                case 'body':
+                  return <BodyText keyPass={component.id} text={component[1]} />;
+                default:
+                  return null;
               }
             })()
 

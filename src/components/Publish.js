@@ -89,24 +89,24 @@ const Publish = ({visible, showRecent}) => {
                   return( () => {
                     switch(input) {
                       case 'title':
-                        return <li key={index}>
+                        return (<li key={index}>
                           <TitleInput inputOrder={index} 
-                          inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} /></li>;
+                          inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
                      
                       case 'subTitle':
-                        return <li key={index}>
+                        return (<li key={index}>
                           <SubTitleInput inputOrder={index} 
-                          inputType={'subTitle'} handleInput={sendStateToParent} parentState={articleBuild} /></li>;
+                          inputType={'subTitle'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
                      
                       case 'image':
-                        return <li key={index}>
+                        return (<li key={index}>
                           <ImageInput inputOrder={index} 
-                          inputType={'image'} handleInput={sendStateToParent} parentState={articleBuild} /></li>;
+                          inputType={'image'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
                      
                       case 'body':
-                        return <li key={index}>
+                        return (<li key={index}>
                         <BodyInput inputOrder={index} 
-                        inputType={'body'} handleInput={sendStateToParent} parentState={articleBuild} /></li>;
+                        inputType={'body'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
                      
                       default: 
                         return null
