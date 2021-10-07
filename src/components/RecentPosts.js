@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import firebaseApp from '../firebase'
+import firebaseApp from '../firebase';
 import {ref, onValue} from 'firebase/database';
 import PostCard from './PostCard';
 

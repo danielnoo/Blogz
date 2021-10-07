@@ -1,9 +1,9 @@
 
 
-const TitleText = ({keyPass, text}) => {
+const TitleText = ({text}) => {
 
   return(
-    <h4 key={keyPass}>{text}</h4>
+    <h4>{text}</h4>
   )
 }
 
