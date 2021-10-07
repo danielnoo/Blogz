@@ -10,7 +10,7 @@ const TimeToRead = ({post}) => {
 
   return(
     <>
-      {`${Math.round((letters / 220) / 4.6)} minute read`}
+      {`${Math.round((letters / 160) / 4.6)} minute read`}
     </>
   )
 }

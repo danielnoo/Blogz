@@ -8,7 +8,7 @@ import BodyInput from './BodyInput';
 import ImageInput from './ImageInput';
 
 
-const Publish = ({visible, showRecent}) => {
+const Publish = ({visible, showRecent, user}) => {
   // this state array is used to generate the inputs dynamically
   const [inputArray, setInputArray] = useState([]); // each entry is a type of input
   // this state is used to store input data from child inputs in order in order
@@ -23,10 +23,10 @@ const Publish = ({visible, showRecent}) => {
       const placeHoldArray = inputArray;
       placeHoldArray.push(inputType)
       setInputArray([...placeHoldArray]);
-      console.log(`added ${inputType} to array`)
     }
   }
   
+      
 
 
   // a function that creates an array with state that has been raised from input children components
@@ -43,24 +43,23 @@ const Publish = ({visible, showRecent}) => {
   // a function that gathers input data from articleBuild state
   // it should create a single object with all of the article pieces stored in order of creation
   // it then pushes data from state to firebase using the 
-  // imported dbpush() function
+  // imported(locally) dbpush() function
   const handleSubmit = function(event) {
     
     event.preventDefault();
     
     
     const post = {};
-    // filter out empty inputs in state, for each input add them to the post object and name them by index
-    articleBuild.filter(input => input.inputValue).forEach((input, index) => post['index' + index] = input)
-   
-   
-    console.log(post)
+    // filter out empty inputs in state, for each input add them to the post object and name them by index (they would be named by type but would overwrite because of duplication)
+    articleBuild.filter(input => input.inputValue).forEach((input, index) => post['index' + index] = input);
     
+    // get userName from parent state, add to article
+    post.author = user.userName;
+    
+      
     db.pushArticle(post);
     showRecent();
-  //   setTitle("");
-  //   setBody("");
-  // }  
+   
   }
   
 
@@ -81,11 +80,7 @@ const Publish = ({visible, showRecent}) => {
           <section>
             
             <form onSubmit={handleSubmit}>
-             
-              <InputChooser addInputType={addInputType}/>
-              
-               
-                
+                                   
               <ul className="inputContainer">  
               {
                 
@@ -111,8 +106,8 @@ const Publish = ({visible, showRecent}) => {
                      
                       case 'body':
                         return (<li key={index}>
-                        <BodyInput inputOrder={index} 
-                        inputType={'body'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
+                          <BodyInput inputOrder={index} 
+                          inputType={'body'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
                      
                       default: 
                         return null
@@ -122,6 +117,8 @@ const Publish = ({visible, showRecent}) => {
                 })
               }
               </ul>
+
+              <InputChooser addInputType={addInputType}/>
               
               
               <button>Publish</button> 

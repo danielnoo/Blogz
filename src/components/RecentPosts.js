@@ -25,17 +25,19 @@ const RecentPosts = ({visible, setArticleData, showFull}) => {
           post: data[key]
         })
       }
+
+      console.log(dataArray[0].post.author)
       
       
       dataArray.reverse();
-      setPosts([...dataArray]);
+      setPosts(dataArray);
       setDataReceived(true);
       
     });
     
   }, [])
     
-  useEffect(() => {})
+  
   
   
  // visible state is passed from App.js, if it is true, render a ul and 
@@ -45,22 +47,31 @@ const RecentPosts = ({visible, setArticleData, showFull}) => {
       { visible ? <h2 className="recentHeader">Recent Posts</h2> : null }
 
       { visible && dataReceived ? 
-      
+      <>
         <ul className="recentPosts">
           {posts.slice(0, 10).map(post => {
+            
             return(
               <li key={post.id}>
-                <PostCard post={post} setArticleData={setArticleData} showFull={showFull} />
+                <PostCard post={post} author={post.post.author} setArticleData={setArticleData} showFull={showFull} />
               </li>
             )
           })} 
-        </ul> : null
-      } 
+        </ul> 
+        
+        
+        <footer>Created at Juno College</footer>
+        
+      </> : null
+
+        
+      }
+       
     </>
   )
 }
 
-export default RecentPosts
+export default RecentPosts;
   
 
     
