@@ -87,7 +87,7 @@ function App() {
       </header>
       <div className="container">  
         <main>
-          <Publish visible={displayPublish} showRecent={showRecent}/>
+          <Publish visible={displayPublish} showRecent={showRecent} user={user}/>
           <RecentPosts visible={displayRecentPosts} setArticleData={setArticleData} showFull={showFullArticle}/>
           <FullArticleView visible={displayFullArticle} data={articleData} />
         </main>
