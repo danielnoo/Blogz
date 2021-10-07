@@ -48,7 +48,8 @@ function App() {
   // from google that is active and set the user info accordingly so that Publish is accessible
   // login/logout is displayed correctly
  
-  
+  // this function is not working properly at the moment as I ran out of time working on it
+  // but it's very close! :) It's missing something to keep it from updating before state is
   useEffect(() => {
     
     const auth = getAuth();

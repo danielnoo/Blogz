@@ -1,5 +1,5 @@
 
-
+// print body text for FullArticleView
 const BodyText = ({text}) => {
   
   return(

@@ -11,7 +11,7 @@ const RecentPosts = ({visible, setArticleData, showFull}) => {
   const [posts, setPosts] = useState([])
   const [dataReceived, setDataReceived] = useState(false)
   
-  
+  // contact the database once on page load to get article data
   useEffect(() => {
       
     const postListRef = ref(firebaseApp, '/posts');
@@ -26,9 +26,9 @@ const RecentPosts = ({visible, setArticleData, showFull}) => {
         })
       }
 
-      console.log(dataArray[0].post.author)
-      
-      
+            
+      // reverse the array of articles so that the newest are at
+      // the beginning of it
       dataArray.reverse();
       setPosts(dataArray);
       setDataReceived(true);

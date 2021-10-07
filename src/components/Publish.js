@@ -69,7 +69,7 @@ const Publish = ({visible, showRecent, user}) => {
   // The Publish return only looks complicated because it is returning elements
   // to the page that are dynamic in nature. <InputChooser/> is not dynamic and returns a menu with four options that let the user build their blog. 
   // that input is stored in an array and returned to the page via a switch function
-  // with each case returning one of the options
+  // with each case returning one of the options via a different component
 
   return(
     <>

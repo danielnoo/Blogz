@@ -1,5 +1,5 @@
 
-
+// print title text for FullArticleView
 const TitleText = ({text}) => {
 
   return(

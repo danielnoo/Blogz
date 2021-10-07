@@ -1,6 +1,6 @@
 
-
-const SubTitleText = ({keyPass, text}) => {
+// print  sub title text for FullArticleView
+const SubTitleText = ({text}) => {
 
   return(
 

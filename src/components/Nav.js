@@ -3,14 +3,9 @@ import LoginButton from "./LoginButton"
 const Nav = ({user, setUser, showPublish }) => {
 
 
-  /// have login state here and apply it all in a new nav component
-
-
-  // toggle state in App by passing reference to setState() as props
-
   
-
-
+  // this return takes some state from App.js and passes user status to display
+   // the correct Login/Logout button
   return(
     <nav>
       <ul>

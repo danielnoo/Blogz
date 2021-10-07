@@ -1,5 +1,10 @@
 
 
+// a helper that goes through the post array and gathers the 
+// length of all text and then divides it by the low end of the average
+// words per minute that people can read, then divides that by the average
+// length of a word
+
 const TimeToRead = ({post}) => {
   
   let letters = 0;
