@@ -5,6 +5,8 @@ import Nav from './Nav';
 import FullArticleView from './FullArticleView';
 import UserPic from './UserPic';
 import '../styles/App.scss';
+import { getAuth } from "firebase/auth";
+import { useEffect } from 'react/cjs/react.development';
 
 
 function App() {
@@ -42,6 +44,35 @@ function App() {
   }
 
 
+  // this function should check with firebase to see if they have a persistent connection
+  // from google that is active and set the user info accordingly so that Publish is accessible
+  // login/logout is displayed correctly
+ 
+  
+  useEffect(() => {
+    
+    const auth = getAuth();
+    const googleUser = auth.currentUser;
+
+    if (googleUser) {
+      const userObject = {
+          userName: googleUser.displayName,
+          userPic: googleUser.photoURL,
+          userLoggedIn: true
+      }
+      console.log('authy')
+      setUser({...userObject})
+    } else {
+      console.log('no authy')
+    }
+    
+    
+  }, [])  
+
+
+
+
+
 
 
   // a lot of state is passed down from App.js through this return function
@@ -50,7 +81,7 @@ function App() {
   return (
     <div className="wrapper">
       <header>
-        <a href="index.html"><h1>Blogz</h1></a>
+        <h1 onClick={showRecent}>Blogz</h1>
         <UserPic user={user} />
         <Nav user={user} setUser={setUser} showPublish={showPublish} />
       </header>

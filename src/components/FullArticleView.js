@@ -2,6 +2,7 @@ import TitleText from './TitleText.js';
 import BodyText from './BodyText.js';
 import ImageComponent from './ImageComponent.js';
 import SubTitleText from './SubTitleText.js';
+import React from 'react';
 
 
 
@@ -16,17 +17,26 @@ const FullArticleView = ({visible, data}) => {
       { visible ? 
         
         <div className="fullArticleContainer">
-          {data.map(component => {
+          {data.map((component, index) => {
+            
             return(() => {
               switch(component[0]) {
                 case 'title':
-                  return <TitleText keyPass={component.id} text={component[1]} />;
+                  return <React.Fragment key={index}>
+                          <TitleText text={component[1]} />
+                         </React.Fragment>;
                 case 'subTitle':
-                  return <SubTitleText keyPass={component.id} text={component[1]} />;
+                  return <React.Fragment key={index}>
+                          <SubTitleText text={component[1]} />
+                         </React.Fragment>;
                 case 'image':
-                  return <ImageComponent keyPass={component.id} text={component[1]} />;
+                  return <React.Fragment key={index}>
+                          <ImageComponent text={component[1]} />
+                         </React.Fragment>; 
                 case 'body':
-                  return <BodyText keyPass={component.id} text={component[1]} />;
+                  return <React.Fragment key={index}>
+                          <BodyText text={component[1]} />
+                         </React.Fragment> 
                 default:
                   return null;
               }

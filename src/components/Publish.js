@@ -66,6 +66,12 @@ const Publish = ({visible, showRecent}) => {
 
   
 
+
+  // The Publish return only looks complicated because it is returning elements
+  // to the page that are dynamic in nature. <InputChooser/> is not dynamic and returns a menu with four options that let the user build their blog. 
+  // that input is stored in an array and returned to the page via a switch function
+  // with each case returning one of the options
+
   return(
     <>
       
@@ -80,7 +86,7 @@ const Publish = ({visible, showRecent}) => {
               
                
                 
-              <ul>  
+              <ul className="inputContainer">  
               {
                 
                 inputArray.map((input, index) => {
@@ -113,44 +119,12 @@ const Publish = ({visible, showRecent}) => {
                     }
 
                   })()
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  // if(input === 'title') {
-                  //   return (<li key={index}>
-                  //   <TitleInput inputOrder={index} 
-                  //   inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} /></li>
-                  //   )
-                  // } else if(input === 'subTitle') {
-                  //   return (<li key={index}>
-                  //   <SubTitleInput inputOrder={index} 
-                  //   inputType={'subTitle'} handleInput={sendStateToParent} /></li>
-                  //   )
-                  // } else if(input === 'image') {
-                  //   return (<li key={index}>
-                  //   <ImageInput inputOrder={index} 
-                  //   inputType={'image'} handleInput={sendStateToParent} /></li>
-                  //   )
-                  // } else {
-                  //   return(<li key={index}>
-                  //   <BodyInput inputOrder={index} 
-                  //   inputType={'body'} handleInput={sendStateToParent} /></li>
-                  //   )
-                  // }
-                  
                 })
               }
-              </ul>  
+              </ul>
               
               
-              <button>Publish move this to useEffect and render if form length is long enough</button> 
+              <button>Publish</button> 
             </form>
           </section> : null
       }

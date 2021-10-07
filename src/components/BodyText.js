@@ -1,10 +1,10 @@
 
 
-const BodyText = ({keyPass, text}) => {
+const BodyText = ({text}) => {
   
   return(
     
-      <p key={keyPass}>{text}</p>
+      <p>{text}</p>
     
   )
 }

@@ -12,7 +12,7 @@
     list-style: none;
     display: grid;
     grid-template-rows: 6rem auto 3rem;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    box-shadow: $boxShadow;
 
 
     h3 {
@@ -66,7 +66,7 @@
   text-align: center;
   font-family: $font;
   font-size: 3rem;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  box-shadow: $boxShadow;
   width: 40%;
   margin: 2rem auto;
   padding: 1rem 0;

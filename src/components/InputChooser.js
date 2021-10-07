@@ -24,12 +24,12 @@ const InputChooser = ({addInputType}) => {
       }
     
       { menuVisibility ?
-      <nav>
-        <button type="button" onClick={() => addInputType('title')}>Add Title</button>
-        <button type="button" onClick={() => addInputType('subTitle')}>Add subtitle</button>
-        <button type="button" onClick={() => addInputType('image')}>Add image by URL</button>
-        <button type="button" onClick={() => addInputType('body')}>Add body text</button>
-      </nav>
+      <ul>
+        <li><button type="button" onClick={() => addInputType('title')}>Add Title</button></li>
+        <li><button type="button" onClick={() => addInputType('subTitle')}>Add subtitle</button></li>
+        <li><button type="button" onClick={() => addInputType('image')}>Add image URL</button></li>
+        <li><button type="button" onClick={() => addInputType('body')}>Add body text</button></li>
+      </ul>
         : null
       }
     
@@ -39,3 +39,4 @@ const InputChooser = ({addInputType}) => {
 }
 
 export default InputChooser;
+

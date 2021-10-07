@@ -22,7 +22,7 @@ const LoginButton = ({user, setUser}) => {
           userLoggedIn: true
         }
         // set minimal user info in state
-        setUser(userObject)
+        setUser({...userObject})
         
       }).catch((error) => {
         // Handle Errors here.

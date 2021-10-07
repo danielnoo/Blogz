@@ -3,11 +3,11 @@
 // pictures the user might want to include in their article, the alt-tag is sadly not doing much 
 // with this app in its current state
 
-const ImageComponent = ({keyPass, text}) => {
+const ImageComponent = ({text}) => {
 
   return(
 
-    <div className="imageContainer" key={keyPass}>
+    <div className="imageContainer">
       <img src={text} alt="user selected scene" />
     </div>
 

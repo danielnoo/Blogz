@@ -14,8 +14,8 @@ form {
     width: 100%;
     height: 3rem;
     border: none;
-    font-size: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    font-size: 1.8rem;
+    box-shadow: $boxShadow;
   }
 
   textarea {
@@ -24,9 +24,9 @@ form {
     height: 60vh;
     font-size: 1.5rem;
     border: none;
-    margin-top: 1.5rem;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    box-shadow: $boxShadow;
   }
+    
 
   button {
     border: none;
@@ -39,8 +39,49 @@ form {
     margin: 2rem;
 
   }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    width: 85%;
+
+    li {
+      list-style-type: none;
+    }
+  }
 }
 
 .addElementContainer {
   display: flex;
+  align-items: center;
+
+  ul {
+    display: flex;
+
+
+    li {
+      list-style-type: none;
+      width: 11rem;
+
+      button {
+        width: 80%;
+        height: 2.5rem;
+        margin: 0;
+        box-shadow: $boxShadow;
+      }
+    }
+  }
+}
+
+.addElementContainer > button {
+  width: 2.5rem;
+  height: 2.5rem;
+  box-shadow: $boxShadow;
+}
+
+.inputContainer {
+  li {
+    margin-top: 1.5rem;
+  }
+
 }
