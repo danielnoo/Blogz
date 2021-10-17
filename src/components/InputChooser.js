@@ -2,6 +2,7 @@
 import {useState} from 'react';
 
 const InputChooser = ({addInputType}) => {
+  
   const [menuVisibility, setMenuVisibility] = useState(false);
   const [plusClicked, setPlusClicked] = useState(true);
   

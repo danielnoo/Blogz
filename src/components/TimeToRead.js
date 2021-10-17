@@ -10,7 +10,9 @@ const TimeToRead = ({post}) => {
   let letters = 0;
 
   post.forEach(textPiece => {
-    letters += textPiece[1].length
+    if(textPiece[1]) {
+      letters += textPiece[1].length
+    }
   })
 
   return(
