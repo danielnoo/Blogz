@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Publish from './Publish';
 import RecentPosts from './RecentPosts';
 import Nav from './Nav';
@@ -80,20 +81,30 @@ function App() {
   // some of it is data that has been raised from components like articleData and user
   // some of it is visual toggles like show* and display*
   return (
-    <div className="wrapper">
-      <header>
-        <h1 onClick={showRecent}>Blogz</h1>
-        <UserPic user={user} />
-        <Nav user={user} setUser={setUser} showPublish={showPublish} />
-      </header>
-      <div className="container">  
-        <main>
-          <Publish visible={displayPublish} showRecent={showRecent} user={user}/>
-          <RecentPosts visible={displayRecentPosts} setArticleData={setArticleData} showFull={showFullArticle}/>
-          <FullArticleView visible={displayFullArticle} data={articleData} />
-        </main>
+    <Router>
+      <div className="wrapper">
+        <header>
+          <h1 onClick={showRecent}>Blogz</h1>
+          <UserPic user={user} />
+          <Nav user={user} setUser={setUser} showPublish={showPublish} />
+        </header>
+        <div className="container">
+          <main>
+            <Publish
+              visible={displayPublish}
+              showRecent={showRecent}
+              user={user}
+            />
+            <RecentPosts
+              visible={displayRecentPosts}
+              setArticleData={setArticleData}
+              showFull={showFullArticle}
+            />
+            <FullArticleView visible={displayFullArticle} data={articleData} />
+          </main>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
       
