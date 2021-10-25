@@ -42,9 +42,12 @@ db.getArticle = (setStateFn, id) => {
             for(let key in data) {
             dataArray.push(data[key])
             }
+            
+            // snip the author off of the front of the array
+            // pass the rest of the array as the article content
             const author = dataArray.shift();
             setStateFn(author, dataArray)
-            console.log(dataArray);
+            
         } else {
             console.log('no data')
         }

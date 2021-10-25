@@ -9,7 +9,7 @@ import React from 'react';
 
 
 const ViewArticle = () => {
-  const [article, setArticle] = useState();
+  const [article, setArticle] = useState([]);
   const [author, setAuthor] = useState();
   const {postID} = useParams();
   
@@ -25,48 +25,43 @@ const ViewArticle = () => {
 
  
   
-  return(
-     article ? 
-      <div className="fullArticleContainer">
-          {author}
-          {article.map((component, index) => {
-            
-            return(() => {
-              switch(component.inputType) {
-                case 'title':
-                  return (
-                    <React.Fragment key={index}>
-                    <TitleText text={component.inputValue} />
-                    </React.Fragment>
-                  );
-                case 'subTitle':
-                  return (
-                    <React.Fragment key={index}>
-                    <SubTitleText text={component.inputValue} />
-                    </React.Fragment>
-                  );
-                case 'image':
-                  return (
-                    <React.Fragment key={index}>
-                    <ImageComponent text={component.inputValue} />
-                    </React.Fragment> 
-                  )
-                case 'body':
-                  return (
-                    <React.Fragment key={index}>
-                    <BodyText text={component.inputValue} />
-                    </React.Fragment> 
-                  )
-                default:
-                  return null;
-              }
-            })()
-
-          })}
-        </div> : null
-      
-    
-   
+  return (article.length > 0 ? (
+    <div className="fullArticleContainer">
+      <h6>by: {author}</h6>
+      {article.map((component, index) => {
+        return (() => {
+          switch (component.inputType) {
+            case "title":
+              return (
+                <React.Fragment key={index}>
+                  <TitleText text={component.inputValue} />
+                </React.Fragment>
+              );
+            case "subTitle":
+              return (
+                <React.Fragment key={index}>
+                  <SubTitleText text={component.inputValue} />
+                </React.Fragment>
+              );
+            case "image":
+              return (
+                <React.Fragment key={index}>
+                  <ImageComponent text={component.inputValue} />
+                </React.Fragment>
+              );
+            case "body":
+              return (
+                <React.Fragment key={index}>
+                  <BodyText text={component.inputValue} />
+                </React.Fragment>
+              );
+            default:
+              return null;
+          }
+        })();
+      })}
+    </div>
+  ) : null
   )
 }
 

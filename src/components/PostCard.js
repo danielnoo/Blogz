@@ -15,7 +15,7 @@ const PostCard = ({post, author, setArticleData, showFull}) => {
 
    const handleClick = () => {
     
-    setArticleData(flattenedPost)
+    
     showFull();
 
    }
@@ -91,16 +91,20 @@ const PostCard = ({post, author, setArticleData, showFull}) => {
 
   
   
-  return(
+  return (
     <>
       <h3>{title}</h3>
       <p>{body}</p>
       <div className="fade"></div>
-      <Link to={`/${post.id}`}>linkin </Link>
-      <button onClick={handleClick}>Read more --- <TimeToRead post={flattenedPost} /></button>
+      <Link to={`/${post.id}`}>
+        <button onClick={handleClick}>
+          Read more --- <TimeToRead post={flattenedPost} />
+        </button>{" "}
+      </Link>
+
       <p className="author">by: {author} </p>
-    </> 
-  )
+    </>
+  );
 
 };
       

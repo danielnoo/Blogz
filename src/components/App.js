@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Publish from './Publish';
 import RecentPosts from './RecentPosts';
 import Nav from './Nav';
-import FullArticleView from './FullArticleView';
+
 import ViewArticle from './ViewArticle';
 import UserPic from './UserPic';
 import '../styles/App.scss';
@@ -101,7 +101,7 @@ function App() {
               setArticleData={setArticleData}
               showFull={showFullArticle}
             />
-            <FullArticleView visible={displayFullArticle} data={articleData} />
+            
             <Route exact path="/:postID">
               <ViewArticle />
             </Route>
