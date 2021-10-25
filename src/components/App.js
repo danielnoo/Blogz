@@ -13,37 +13,21 @@ import { getAuth } from "firebase/auth";
 
 function App() {
   
-  const [displayRecentPosts, setDisplayRecentPosts] = useState(true);
-  const [displayPublish, setDisplayPublish] = useState(true);
-  const [displayFullArticle, setDisplayFullArticle] = useState(true);
+  
   const [articleData, setArticleData] = useState([]);
   const [user, setUser] = useState({userName: "", userPic: "", userLoggedIn: false})
 
   // hide recent posts landing page and show the publish page
-  const showPublish = () => {
-    if(user.userLoggedIn) {
-    setDisplayPublish(true);
-    setDisplayRecentPosts(false);
-    setDisplayFullArticle(false);
-    }
-  }
+ 
   // hide Publish page and show RecentPosts
-  const showRecent = () => {
-    setDisplayPublish(false);
-    setDisplayRecentPosts(true);
-    setDisplayFullArticle(false);
-  }
+  
   // display article in full view when read more button is clicked
   // state has to drill down from here to PostCard and bring with it a function that takes args
   // that function will call in PostCard and send the article info here, where it will be passed as 
   // props to full article view
   
-  // state change here will hide Recentposts and Publish,then show FullArticleView
-  const showFullArticle = () => {
-    setDisplayPublish(false);
-    setDisplayRecentPosts(false);
-    setDisplayFullArticle(true);
-  }
+  
+  
 
 
   // this function should check with firebase to see if they have a persistent connection
@@ -87,25 +71,25 @@ function App() {
         
           <header>
             <Link className="logoLink" to="/">
-              <h1 onClick={showRecent}>Blogz</h1>
+              <h1>Blogz</h1>
             </Link>
             <UserPic user={user} />
-            <Nav user={user} setUser={setUser} showPublish={showPublish} />
+            <Nav user={user} setUser={setUser} />
           </header>
           <div className="container">
             <main>
               <Route path="/publish">  
                 <Publish
-                  visible={displayPublish}
-                  showRecent={showRecent}
+                  
+                 
                   user={user}
                 />
               </Route>
               <Route exact path="/">
                 <RecentPosts
-                  visible={displayRecentPosts}
+                  
                   setArticleData={setArticleData}
-                  showFull={showFullArticle}
+                  
                 />
               </Route>
               <Route path="/:postID">

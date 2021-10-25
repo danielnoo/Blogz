@@ -13,12 +13,7 @@ const PostCard = ({post, author, setArticleData, showFull}) => {
 
 
 
-   const handleClick = () => {
-    
-    
-    showFull();
-
-   }
+   
   
   // flatten out the object inside of post into an array
   // its current form is {id: id, post: {index0: {inputType: "X"}, {inputValue: "X"}}}
@@ -97,7 +92,7 @@ const PostCard = ({post, author, setArticleData, showFull}) => {
       <p>{body}</p>
       <div className="fade"></div>
       <Link to={`/${post.id}`}>
-        <button onClick={handleClick}>
+        <button>
           Read more --- <TimeToRead post={flattenedPost} />
         </button>{" "}
       </Link>

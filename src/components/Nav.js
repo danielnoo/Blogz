@@ -1,6 +1,7 @@
-import LoginButton from "./LoginButton"
+import LoginButton from "./LoginButton";
+import {Link} from 'react-router-dom';
 
-const Nav = ({user, setUser, showPublish }) => {
+const Nav = ({user, setUser}) => {
 
 
   
@@ -12,7 +13,11 @@ const Nav = ({user, setUser, showPublish }) => {
         <li>
           <LoginButton user={user} setUser={setUser} />
         </li>
-        <li><button className="publish-button" onClick={() => showPublish()}>Publish</button></li>
+        <li>
+          <Link to="/publish">
+            <button className="publish-button">Publish</button>
+          </Link>
+        </li>
       </ul>
     </nav>
   )
