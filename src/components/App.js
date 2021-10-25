@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Publish from './Publish';
 import RecentPosts from './RecentPosts';
 import Nav from './Nav';
@@ -14,8 +14,8 @@ import { getAuth } from "firebase/auth";
 function App() {
   
   const [displayRecentPosts, setDisplayRecentPosts] = useState(true);
-  const [displayPublish, setDisplayPublish] = useState(false);
-  const [displayFullArticle, setDisplayFullArticle] = useState(false);
+  const [displayPublish, setDisplayPublish] = useState(true);
+  const [displayFullArticle, setDisplayFullArticle] = useState(true);
   const [articleData, setArticleData] = useState([]);
   const [user, setUser] = useState({userName: "", userPic: "", userLoggedIn: false})
 
@@ -84,29 +84,36 @@ function App() {
   return (
     <Router>
       <div className="wrapper">
-        <header>
-          <h1 onClick={showRecent}>Blogz</h1>
-          <UserPic user={user} />
-          <Nav user={user} setUser={setUser} showPublish={showPublish} />
-        </header>
-        <div className="container">
-          <main>
-            <Publish
-              visible={displayPublish}
-              showRecent={showRecent}
-              user={user}
-            />
-            <RecentPosts
-              visible={displayRecentPosts}
-              setArticleData={setArticleData}
-              showFull={showFullArticle}
-            />
-            
-            <Route exact path="/:postID">
-              <ViewArticle />
-            </Route>
-          </main>
-        </div>
+        
+          <header>
+            <Link className="logoLink" to="/">
+              <h1 onClick={showRecent}>Blogz</h1>
+            </Link>
+            <UserPic user={user} />
+            <Nav user={user} setUser={setUser} showPublish={showPublish} />
+          </header>
+          <div className="container">
+            <main>
+              <Route path="/publish">  
+                <Publish
+                  visible={displayPublish}
+                  showRecent={showRecent}
+                  user={user}
+                />
+              </Route>
+              <Route exact path="/">
+                <RecentPosts
+                  visible={displayRecentPosts}
+                  setArticleData={setArticleData}
+                  showFull={showFullArticle}
+                />
+              </Route>
+              <Route path="/:postID">
+                <ViewArticle />
+              </Route>
+            </main>
+          </div>
+        
       </div>
     </Router>
   );
