@@ -8,7 +8,7 @@
 const TimeToRead = ({post}) => {
   
   let letters = 0;
-
+  
   post.forEach(textPiece => {
     if(textPiece[1]) {
       letters += textPiece[1].length
@@ -23,4 +23,4 @@ const TimeToRead = ({post}) => {
 }
 
 
-export default TimeToRead
+export default TimeToRead;

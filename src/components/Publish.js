@@ -6,9 +6,12 @@ import TitleInput from './TitleInput';
 import SubTitleInput from './SubTitleInput';
 import BodyInput from './BodyInput';
 import ImageInput from './ImageInput';
+import {Link} from 'react-router-dom';
 
 
-const Publish = ({visible, showRecent, user}) => {
+const Publish = ({user}) => {
+  
+  const [submitted, setSubmitted] = useState(false);
   // this state array is used to generate the inputs dynamically
   const [inputArray, setInputArray] = useState([]); // each entry is a type of input
   // this state is used to store input data from child inputs in order in order
@@ -58,8 +61,9 @@ const Publish = ({visible, showRecent, user}) => {
     
       
     db.pushArticle(post);
-    showRecent();
-   
+    
+    setInputArray([]);
+    setSubmitted(true);
   }
   
 
@@ -74,10 +78,11 @@ const Publish = ({visible, showRecent, user}) => {
   return(
     <>
       
-      {
+      
         
-        visible ?
+         
           <section>
+             {!submitted ?
             
             <form onSubmit={handleSubmit}>
                                    
@@ -122,9 +127,21 @@ const Publish = ({visible, showRecent, user}) => {
               
               
               <button>Publish</button> 
-            </form>
-          </section> : null
-      }
+            </form> 
+            
+            : 
+            
+            <div className="submitted">
+              <h6>
+                Your blog has been published!
+              </h6>
+              <p>You can view it among other recent posts <Link className="submittedButton">HERE</Link></p>
+            </div>
+            
+            }
+            
+          </section> 
+      
     </>
   )
 }

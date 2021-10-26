@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
-import TimeToRead from './TimeToRead'
+import TimeToRead from './TimeToRead';
+import {Link} from 'react-router-dom';
+
 
 
 const PostCard = ({post, author, setArticleData, showFull}) => {
@@ -11,12 +13,7 @@ const PostCard = ({post, author, setArticleData, showFull}) => {
 
 
 
-   const handleClick = () => {
-    
-    setArticleData(flattenedPost)
-    showFull();
-
-   }
+   
   
   // flatten out the object inside of post into an array
   // its current form is {id: id, post: {index0: {inputType: "X"}, {inputValue: "X"}}}
@@ -61,7 +58,7 @@ const PostCard = ({post, author, setArticleData, showFull}) => {
   // purpose of this component is mainly to display a teaser card with some of the 
   // info. The following function will parse the flattened data and find the first occurrence of 
   // a title and save it to state to be printed. The second piece will be the first occurence of a body text
-  // it also finds the author
+  
   
   // call after flattenedPost update
   useEffect(() => {
@@ -89,15 +86,20 @@ const PostCard = ({post, author, setArticleData, showFull}) => {
 
   
   
-  return(
+  return (
     <>
       <h3>{title}</h3>
       <p>{body}</p>
       <div className="fade"></div>
-      <button onClick={handleClick}>Read more --- <TimeToRead post={flattenedPost} /></button>
+      <Link to={`/${post.id}`}>
+        <button>
+          Read more --- <TimeToRead post={flattenedPost} />
+        </button>{" "}
+      </Link>
+
       <p className="author">by: {author} </p>
-    </> 
-  )
+    </>
+  );
 
 };
       
