@@ -8,8 +8,10 @@ import PostCard from './PostCard';
 
 const RecentPosts = ({setArticleData}) => {
   
-  const [posts, setPosts] = useState([])
-  const [dataReceived, setDataReceived] = useState(false)
+  const [posts, setPosts] = useState([]);
+  const [dataReceived, setDataReceived] = useState(false);
+  const [pageNum, setPageNum] = useState(0);
+  const [paginatedPosts, setPaginatedPosts] = useState([]);
   
   // contact the database once on page load to get article data
   useEffect(() => {
