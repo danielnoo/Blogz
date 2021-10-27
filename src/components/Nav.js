@@ -14,7 +14,7 @@ const Nav = ({user, setUser}) => {
           <LoginButton user={user} setUser={setUser} />
         </li>
         <li>
-          <Link to="/publish">
+          <Link to="/publish/">
             <button className="publish-button">Publish</button>
           </Link>
         </li>

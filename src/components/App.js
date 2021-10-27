@@ -13,23 +13,10 @@ import { getAuth } from "firebase/auth";
 
 function App() {
   
-  
-  const [articleData, setArticleData] = useState([]);
+    
   const [user, setUser] = useState({userName: "", userPic: "", userLoggedIn: false})
 
-  // hide recent posts landing page and show the publish page
- 
-  // hide Publish page and show RecentPosts
   
-  // display article in full view when read more button is clicked
-  // state has to drill down from here to PostCard and bring with it a function that takes args
-  // that function will call in PostCard and send the article info here, where it will be passed as 
-  // props to full article view
-  
-  
-  
-
-
   // this function should check with firebase to see if they have a persistent connection
   // from google that is active and set the user info accordingly so that Publish is accessible
   // login/logout is displayed correctly
@@ -56,15 +43,7 @@ function App() {
     
   }, [])  
 
-
-
-
-
-
-
-  // a lot of state is passed down from App.js through this return function
-  // some of it is data that has been raised from components like articleData and user
-  // some of it is visual toggles like show* and display*
+ 
   return (
     <Router>
       <div className="wrapper">
@@ -78,21 +57,13 @@ function App() {
           </header>
           <div className="container">
             <main>
-              <Route path="/publish">  
-                <Publish
-                  
-                 
-                  user={user}
-                />
+              <Route path="/publish/">  
+                <Publish user={user} />
               </Route>
               <Route exact path="/">
-                <RecentPosts
-                  
-                  setArticleData={setArticleData}
-                  
-                />
+                <RecentPosts />
               </Route>
-              <Route path="/:postID">
+              <Route path="/post/:postID/">
                 <ViewArticle />
               </Route>
             </main>

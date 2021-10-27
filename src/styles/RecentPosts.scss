@@ -46,6 +46,7 @@
       border: none;
       transition: 0.5s;
       width: 100%;
+      padding: 1rem;
 
       &:hover {
         color: white;
@@ -92,6 +93,22 @@ footer {
 .fetching {
   text-align: center;
   font-size: 1.8rem;
+}
+
+.pageSelectNav {
+  display: flex;
+  margin: 0 auto 3rem auto;
+  
+  p {
+    font-size: 1.3rem;
+    padding: 0 1rem;
+    margin: 0.5rem 0;
+  }
+
+  button {
+    width: 6.5rem;
+    font-size: 1.2rem;
+  }
 }
 
 

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 
 
-const PostCard = ({post, author, setArticleData, showFull}) => {
+const PostCard = ({post, author}) => {
    const [flattenedPost, setFlattenedPost] = useState([])
    const [title, setTitle] = useState("")
    const [body, setBody] = useState("")
@@ -91,7 +91,7 @@ const PostCard = ({post, author, setArticleData, showFull}) => {
       <h3>{title}</h3>
       <p>{body}</p>
       <div className="fade"></div>
-      <Link to={`/${post.id}`}>
+      <Link to={`/post/${post.id}/`}>
         <button>
           Read more --- <TimeToRead post={flattenedPost} />
         </button>{" "}

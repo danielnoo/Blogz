@@ -9,7 +9,6 @@ import PostCard from './PostCard';
 const RecentPosts = ({setArticleData}) => {
   
   const [posts, setPosts] = useState([]);
-  const [dataReceived, setDataReceived] = useState(false);
   const [pageNum, setPageNum] = useState(0);
   const [paginatedPosts, setPaginatedPosts] = useState([]);
   
@@ -33,7 +32,7 @@ const RecentPosts = ({setArticleData}) => {
       // the beginning of it
       dataArray.reverse();
       setPosts(dataArray);
-      setDataReceived(true);
+      
       
     });
     
@@ -71,6 +70,7 @@ const RecentPosts = ({setArticleData}) => {
     return newArray;
   }
     
+  // click handle function for turning pages, expects boolean
   const handlePageTurn = (next) => {
     if(next) {
       if(pageNum === paginatedPosts.length - 1) {
@@ -94,23 +94,23 @@ const RecentPosts = ({setArticleData}) => {
     <>
       <h2 className="recentHeader">Recent Posts</h2>
 
-      { dataReceived ? 
+      { paginatedPosts[pageNum] !== undefined ? 
       <>
         <ul className="recentPosts">
           {paginatedPosts[pageNum].map(post => {
-            console.log(post.id);
+            
             return(
               <li key={post.id}>
-                <PostCard post={post} author={post.post.author} setArticleData={setArticleData} />
+                <PostCard post={post} author={post.post.author} />
               </li>
             )
           })} 
         </ul> 
         
         <nav className="pageSelectNav">
-          <button onClick={() => handlePageTurn(false)}>Previous Page</button>
-          <p>Page {pageNum + 1}</p>
-          <button onClick={() => handlePageTurn(true)}>Next Page</button>
+          <button onClick={() => handlePageTurn(false)}>Previous</button>
+          <p>Page {pageNum + 1} of {paginatedPosts.length}</p>
+          <button onClick={() => handlePageTurn(true)}>Next</button>
         </nav>
 
         <footer>Created at Juno College</footer>

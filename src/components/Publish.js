@@ -135,7 +135,7 @@ const Publish = ({user}) => {
               <h6>
                 Your blog has been published!
               </h6>
-              <p>You can view it among other recent posts <Link className="submittedButton">HERE</Link></p>
+              <p>You can view it among other recent posts <Link className="submittedButton" to="/">HERE</Link></p>
             </div>
             
             }
