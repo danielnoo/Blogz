@@ -39,19 +39,21 @@ const RecentPosts = ({setArticleData}) => {
     
   }, [])
 
+  
   useEffect(() => {
     setPaginatedPosts(paginatePosts(posts));
   }, [posts])
   
+  
   const paginatePosts = (postsArray) => {
     const numOfPages = postsArray.length / 10;
-    console.log(numOfPages);
+    
     // a new array to put arrays(pages) in
     const newArray = [];
     for (let i = 0; i < numOfPages; i++) {
       newArray[i] = new Array(0)
     }
-    console.log(newArray);
+    
     // this variable is the stopping point for the loop
     // before switching to next page
     let postCounter = 9;
@@ -65,11 +67,25 @@ const RecentPosts = ({setArticleData}) => {
         newArray[pageCounter - 1].push(post);
       }
     });
-    console.log(newArray);
+    
     return newArray;
   }
     
-  
+  const handlePageTurn = (next) => {
+    if(next) {
+      if(pageNum === paginatedPosts.length - 1) {
+        return
+      }else {
+        setPageNum(pageNum + 1)
+      }
+    } else {
+      if(pageNum <= 0) {
+        return
+      } else {
+        setPageNum(pageNum - 1)
+      }
+    }
+  }
   
   
  // visible state is passed from App.js, if it is true, render a ul and 
@@ -81,7 +97,7 @@ const RecentPosts = ({setArticleData}) => {
       { dataReceived ? 
       <>
         <ul className="recentPosts">
-          {posts.slice(0, 10).map(post => {
+          {paginatedPosts[pageNum].map(post => {
             console.log(post.id);
             return(
               <li key={post.id}>
@@ -91,10 +107,15 @@ const RecentPosts = ({setArticleData}) => {
           })} 
         </ul> 
         
-        
+        <nav className="pageSelectNav">
+          <button onClick={() => handlePageTurn(false)}>Previous Page</button>
+          <p>Page {pageNum + 1}</p>
+          <button onClick={() => handlePageTurn(true)}>Next Page</button>
+        </nav>
+
         <footer>Created at Juno College</footer>
         
-      </> : null
+      </> : <p className="fetching">Fetching posts from database...</p>
 
         
       }
