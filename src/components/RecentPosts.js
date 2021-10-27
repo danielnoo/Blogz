@@ -38,6 +38,36 @@ const RecentPosts = ({setArticleData}) => {
     });
     
   }, [])
+
+  useEffect(() => {
+    setPaginatedPosts(paginatePosts(posts));
+  }, [posts])
+  
+  const paginatePosts = (postsArray) => {
+    const numOfPages = postsArray.length / 10;
+    console.log(numOfPages);
+    // a new array to put arrays(pages) in
+    const newArray = [];
+    for (let i = 0; i < numOfPages; i++) {
+      newArray[i] = new Array(0)
+    }
+    console.log(newArray);
+    // this variable is the stopping point for the loop
+    // before switching to next page
+    let postCounter = 9;
+    let pageCounter = 1;
+    postsArray.forEach((post, index) => {
+      if (index <= postCounter) {
+        newArray[pageCounter - 1].push(post);
+      } else {
+        postCounter = pageCounter * 10 + postCounter;
+        pageCounter++;
+        newArray[pageCounter - 1].push(post);
+      }
+    });
+    console.log(newArray);
+    return newArray;
+  }
     
   
   
