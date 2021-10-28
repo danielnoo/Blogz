@@ -59,7 +59,6 @@ const Publish = ({user}) => {
     // get userName from parent state, add to article
     post.author = user.userName;
     
-      
     db.pushArticle(post);
     
     setInputArray([]);
@@ -76,73 +75,75 @@ const Publish = ({user}) => {
   // with each case returning one of the options via a different component
 
   return(
-    <>
-      
-      
+    user.userLoggedIn ? 
+      <>
         
-         
-          <section>
-             {!submitted ?
-            
-            <form onSubmit={handleSubmit}>
-                                   
-              <ul className="inputContainer">  
-              {
+        
+          
+          
+            <section>
+              {!submitted ?
+              
+              <form onSubmit={handleSubmit}>
+                                    
+                <ul className="inputContainer">  
+                {
+                  
+                  inputArray.map((input, index) => {
+                    
+                    
+                    return( () => {
+                      switch(input) {
+                        case 'title':
+                          return (<li key={index}>
+                            <TitleInput inputOrder={index} 
+                            inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
+                      
+                        case 'subTitle':
+                          return (<li key={index}>
+                            <SubTitleInput inputOrder={index} 
+                            inputType={'subTitle'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
+                      
+                        case 'image':
+                          return (<li key={index}>
+                            <ImageInput inputOrder={index} 
+                            inputType={'image'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
+                      
+                        case 'body':
+                          return (<li key={index}>
+                            <BodyInput inputOrder={index} 
+                            inputType={'body'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
+                      
+                        default: 
+                          return null
+                      }
+
+                    })()
+                  })
+                }
+                </ul>
+
+                <InputChooser addInputType={addInputType}/>
                 
-                inputArray.map((input, index) => {
-                  
-                  
-                  return( () => {
-                    switch(input) {
-                      case 'title':
-                        return (<li key={index}>
-                          <TitleInput inputOrder={index} 
-                          inputType={'title'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
-                     
-                      case 'subTitle':
-                        return (<li key={index}>
-                          <SubTitleInput inputOrder={index} 
-                          inputType={'subTitle'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
-                     
-                      case 'image':
-                        return (<li key={index}>
-                          <ImageInput inputOrder={index} 
-                          inputType={'image'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
-                     
-                      case 'body':
-                        return (<li key={index}>
-                          <BodyInput inputOrder={index} 
-                          inputType={'body'} handleInput={sendStateToParent} parentState={articleBuild} /></li>);
-                     
-                      default: 
-                        return null
-                    }
-
-                  })()
-                })
+                
+                <button>Publish</button> 
+              </form> 
+              
+              : 
+              
+              <div className="submitted">
+                <h6>
+                  Your blog has been published!
+                </h6>
+                <p>You can view it among other recent posts <Link className="submittedButton" to="/">HERE</Link></p>
+              </div>
+              
               }
-              </ul>
-
-              <InputChooser addInputType={addInputType}/>
               
-              
-              <button>Publish</button> 
-            </form> 
-            
-            : 
-            
-            <div className="submitted">
-              <h6>
-                Your blog has been published!
-              </h6>
-              <p>You can view it among other recent posts <Link className="submittedButton" to="/">HERE</Link></p>
-            </div>
-            
-            }
-            
-          </section> 
-      
-    </>
+            </section> 
+        
+      </> : <h3 className="pleaseLog">Please Login before Publishing</h3>
+    
   )
 }
 
