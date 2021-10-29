@@ -1,9 +1,13 @@
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .wrapper > header {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     height: auto;
-    
+
+    .logoLink {
+      margin: 0;
+    }
+
     h1 {
       margin-top: 1rem;
       grid-row: 1;
@@ -22,11 +26,11 @@
         }
       }
     }
-    
+
     div {
       grid-row: 2;
       grid-column: 1/2;
-      margin-right: 23rem;
+      
     }
   }
 
@@ -41,9 +45,9 @@
 
   main > .fullArticleContainer {
     width: 100%;
+
+    p {
+      padding: 2rem 0.2rem;
+    }
   }
-
-
 }
-
-

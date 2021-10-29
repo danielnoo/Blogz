@@ -14,7 +14,6 @@
     grid-template-rows: 6rem auto 3rem;
     box-shadow: $boxShadow;
 
-
     h3 {
       text-align: center;
       font-weight: 700;
@@ -31,7 +30,6 @@
       grid-row: 2/3;
       grid-column: 1/-1;
       overflow: hidden;
-
     }
 
     button {
@@ -46,6 +44,7 @@
       border: none;
       transition: 0.5s;
       width: 100%;
+      padding: 1rem;
 
       &:hover {
         color: white;
@@ -56,12 +55,14 @@
     .fade {
       grid-column: 1/-1;
       grid-row: 2/4;
-      background: linear-gradient(0deg, rgba(255,255,255,1) 15%, rgba(249,249,249,0.5) 50%);
+      background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 1) 15%,
+        rgba(249, 249, 249, 0.5) 50%
+      );
     }
   }
 }
-
-      
 
 .recentHeader {
   text-align: center;
@@ -89,6 +90,23 @@ footer {
   padding: 0.2rem 1rem;
 }
 
+.fetching {
+  text-align: center;
+  font-size: 1.8rem;
+}
 
+.pageSelectNav {
+  display: flex;
+  margin: 0 auto 3rem auto;
 
+  p {
+    font-size: 1.3rem;
+    padding: 0 1rem;
+    margin: 0.5rem 0;
+  }
 
+  button {
+    width: 6.5rem;
+    font-size: 1.2rem;
+  }
+}
