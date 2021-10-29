@@ -1,13 +1,10 @@
 import LoginButton from "./LoginButton";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const Nav = ({user, setUser}) => {
-
-
-  
+const Nav = ({ user, setUser }) => {
   // this return takes some state from App.js and passes user status to display
-   // the correct Login/Logout button
-  return(
+  // the correct Login/Logout button
+  return (
     <nav>
       <ul>
         <li>
@@ -20,8 +17,7 @@ const Nav = ({user, setUser}) => {
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Nav
-            
+export default Nav;

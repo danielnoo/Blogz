@@ -1,31 +1,27 @@
-import {useParams} from 'react-router-dom';
-import {db} from '../dbFunctions';
-import {useEffect, useState} from 'react';
+import { useParams } from "react-router-dom";
+import { db } from "../dbFunctions";
+import { useEffect, useState } from "react";
 import TitleText from "./TitleText.js";
 import BodyText from "./BodyText.js";
 import ImageComponent from "./ImageComponent.js";
 import SubTitleText from "./SubTitleText.js";
-import React from 'react';
-
+import React from "react";
 
 const ViewArticle = () => {
   const [article, setArticle] = useState([]);
   const [author, setAuthor] = useState();
-  const {postID} = useParams();
-  
+  const { postID } = useParams();
+
   useEffect(() => {
-    db.getArticle(setArticleInState, postID)
-    
+    db.getArticle(setArticleInState, postID);
   }, [postID]);
 
   const setArticleInState = (author, articleArray) => {
     setAuthor(author);
     setArticle(articleArray);
-  }
+  };
 
- 
-  
-  return (article.length > 0 ? (
+  return article.length > 0 ? (
     <div className="fullArticleContainer">
       <h6>by: {author}</h6>
       {article.map((component, index) => {
@@ -61,10 +57,7 @@ const ViewArticle = () => {
         })();
       })}
     </div>
-  ) : null
-  )
-}
-
-
+  ) : null;
+};
 
 export default ViewArticle;
